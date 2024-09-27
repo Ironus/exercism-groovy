@@ -1,0 +1,18 @@
+{
+  "authors": [
+    "amscotti"
+  ],
+  "files": {
+    "solution": [
+      "src/main/groovy/ProteinTranslation.groovy"
+    ],
+    "test": [
+      "src/test/groovy/ProteinTranslationSpec.groovy"
+    ],
+    "example": [
+      ".meta/src/reference/groovy/ProteinTranslation.groovy"
+    ]
+  },
+  "blurb": "Translate RNA sequences into proteins.",
+  "source": "Tyler Long"
+}
