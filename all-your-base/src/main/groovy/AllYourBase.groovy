@@ -5,21 +5,15 @@ class AllYourBase {
     AllYourBase(inputBase, digits) {
         if (inputBase < 2) throw new ArithmeticException()
 
-        digits.reverse(true)
+        digits.each {
+            if (it < 0 || it >= inputBase) throw new ArithmeticException()
 
-        for (int i = digits.size() -1; i >= 0; i--) {
-            def digit = digits[i]
-
-            if (digit < 0 || digit >= inputBase) throw new ArithmeticException()
-
-            inBase10 += digit * (inputBase**i)
+            inBase10 = inBase10 * inputBase + it
         }
     }
 
     def rebase(outputBase) {
         if (outputBase < 2) throw new ArithmeticException()
-
-        if (inBase10 == 0) return [0]
 
         def converted = []
 
@@ -28,6 +22,6 @@ class AllYourBase {
             inBase10 = inBase10.intdiv(outputBase)
         }
 
-        converted.reverse()
+        converted.reverse() ?: [0]
     }
 }
