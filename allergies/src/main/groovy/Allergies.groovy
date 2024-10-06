@@ -3,20 +3,17 @@ class Allergies {
     def substances = ['eggs', 'peanuts', 'shellfish', 'strawberries',
                       'tomatoes', 'chocolate', 'pollen', 'cats']
 
-    def allergies = []
+    def score
 
     Allergies(int score) {
-        substances.eachWithIndex{ it, idx -> 
-            if (score & (2**idx))
-                allergies << it
-        }
+        this.score = score
     }
 
     def allergicTo(substance) {
-        allergies.contains(substance)
+        (score & (1 << substances.findIndexOf{ it == substance })) != 0
     }
 
     def list() {
-        allergies
+        substances.findAll{ allergicTo(it) }
     }
 }
