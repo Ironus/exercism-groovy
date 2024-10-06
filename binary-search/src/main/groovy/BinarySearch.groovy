@@ -7,27 +7,18 @@ class BinarySearch {
         this.data = data
     }
 
+    int search(start, end, item) {
+        def pivot = (start + end).intdiv(2)
+        def value = data[pivot] 
+
+        if (start > end) return -1
+        else if (value == item) return pivot
+        else if (value < item) return search(pivot + 1, end, item)
+        else if (value > item) return search(start, pivot - 1, item)
+    }
+
     int indexOf(item) {
-        def start = 0
-        def pivot = 0
-        def end = data.size()
-        def val
-
-        while (val != item && start != end) {
-            if (item < val) end = pivot
-            else start = pivot
-            
-            pivot = (start + end).intdiv(2)
-            val = data[pivot]
-
-            if (start == pivot) {
-                start = end
-            }
-        }
-
-        if (start == end && val != item) pivot = -1
-
-        pivot
+       search(0, data.size(), item)
     }
 
 }
