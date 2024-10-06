@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "mattmoss"
+  ],
+  "contributors": [
+    "amscotti",
+    "sjwarner-bp"
+  ],
+  "files": {
+    "solution": [
+      "src/main/groovy/BinarySearch.groovy"
+    ],
+    "test": [
+      "src/test/groovy/BinarySearchSpec.groovy"
+    ],
+    "example": [
+      ".meta/src/reference/groovy/BinarySearch.groovy"
+    ]
+  },
+  "blurb": "Implement a binary search algorithm.",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Binary_search_algorithm"
+}
