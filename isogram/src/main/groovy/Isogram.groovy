@@ -1,6 +1,6 @@
 class Isogram {
     static boolean isIsogram(String phrase) {
-        phrase = phrase.replaceAll(/[ -]/, '')
-        phrase.collect(new HashSet()){ it.toLowerCase() }.size() == phrase.size()
+        def lettersOnly = phrase.toLowerCase().findAll(/[a-z]/)
+        lettersOnly.toSet().size() == lettersOnly.size()
     }
 }
