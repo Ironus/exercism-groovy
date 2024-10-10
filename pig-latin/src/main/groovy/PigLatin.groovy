@@ -3,21 +3,12 @@ class PigLatin {
     static String translate(String phrase) {
         def translated = []
 
+        def vowels = ~"^([aeiou]|xr|yt).*"
+        def consonants = ~"^([^aeiou]+(?=y)|[^aeiou]?qu|[^aeiou]+)([a-z]+)"
+
         phrase.split(' ').each {
-            String word
-            
-            if (it ==~ ~/^(?>a|e|i|o|u|xr|yt).*$/) {
-                word = it
-            } else if (it ==~ ~/.*qu.*/) {
-                word = it.find(~/qu.*/) - 'qu' + it.find(~/.*qu/)
-            } else if (it ==~ ~/[^(?>a|e|i|o|u)]+y.*/) {
-                word = it.find(~/y.*/) + (it.find(~/.*y/) - 'y')
-            } else {
-                word = it.find(~/(?=[aeiou]).*/)
-                word += (it - word)
-            }
-            
-            translated << (word + 'ay')
+            translated << ((it ==~ vowels) ? it : it.replaceAll(consonants) { 
+                match, consonant, rest -> rest + consonant }) + 'ay'
         }
         
         translated.join(' ')
