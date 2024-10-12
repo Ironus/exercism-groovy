@@ -12,54 +12,49 @@ class Node<T> {
 
 class DoubleLinkedList<T> {
     Node head = null
+    Node tail = null
 
     void push(T value) {
-        if (!head) {
-            head = new Node(value)
-            return
-        }
+        Node newNode = new Node(value, tail)
 
-        Node node = head
+        if (tail)
+            tail.next = newNode
+        else
+            head = newNode
 
-        while (node.next) {
-            node = node.next
-        }
-
-        Node newNode = new Node(value, node)
-        node.next = newNode
+        tail = newNode
     }
 
     T pop() {
-        if (!head) return null
+        if (!tail) return null
 
-        Node node = head
+        T value = tail.value
 
-        while (node.next) {
-            node = node.next
+        if (tail.previous) {
+            tail = tail.previous
+            tail.next = null
+        } else {
+            tail = null
+            head = null
         }
-        
-        if (node.previous) node.previous.next = null
 
-        node.value
+        value
     }
 
     T shift() {
         if (!head) return null
 
-        Node node = head
+        T value = head.value
 
-        while (node.next) {
-            node = node.next
+        if (head.next) {
+            head = head.next
+            head.previous = null
+        } else {
+            tail = null
+            head = null
         }
 
-        node.next = head
-        head.previous = node
-
-        head.next.previous = null
-        head = head.next
-        node.next.next = null
-
-        pop()
+        value
     }
 
     void unshift(T value) {
