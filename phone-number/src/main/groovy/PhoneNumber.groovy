@@ -1,13 +1,9 @@
 class PhoneNumber {
     static String clean(String input) {
-        input = input.replaceAll("[^\\d]", "")
-        input = input[0] != '1' ? input : input.substring(1, input.size())
+        def matcher = input =~ ~$/^(?>[\+\D1]*)([2-9]\d{2})\D*?([2-9]\d{2})\D*?(\d{4})\D*?$/$
 
-        if (input.size() != 10 
-                || input[0] == '0' || input[0] == '1'
-                || input[3] == '0' || input[3] == '1')
-            throw new Exception()
+        if (!matcher) throw new Exception ()
 
-        input
+        matcher.group(1) + matcher.group(2) + matcher.group(3)
     }
 }
